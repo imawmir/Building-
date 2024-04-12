@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+{% block content %}
+
+<form class="" action="{% url 'spent_update' %}" method="post">
+    <h4><i class="bi bi-check fs-3">لطفا اصلاحات را اعمال کنید</i></h4>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">ID</span>
+        <input type="text" name="spent_id" class="form-control fs-4" aria-describedby="addon-wrapping" value="{{spent.id}}">
+    </div>
+    <br>
+    {% csrf_token %}
+
+    <div class="form-floating mb-3">
+      <select class="btn btn-primary dropdown-toggle" name="category">
+        <option value="خرید">خرید</option>
+        <option value="دستمزد">دستمزد</option>
+        <option value="شهرداری">شهرداری</option>
+        <option value="نظام مهندسی">نظام مهندسی</option>
+        <option value="بیمه">بیمه</option>
+      </select>
+    </div>
+    <div class="form-floating mb-3">
+      <span class="input-group-text">عنوان</span>
+      <input type="text" class="form-control" name="subject" value="{{spent.subject}}">
+    </div>
+    <div class="form-floating mb-3">
+      <select class="btn btn-primary dropdown-toggle" name="building">
+          <option value="{{spent.building}}">{{spent.building}}</option>
+      </select>
+    </div>
+    <div class="form-floating mb-3">
+      <span class="input-group-text">تاریخ</span>
+      <input type="text" class="form-control" name="date" value="{{spent.date}}">
+    </div>
+    <div class="form-floating mb-3">
+      <span class="input-group-text">پرداخت کننده</span>
+      <input type="text" class="form-control" name="payer" value="{{spent.payer}}">
+    </div>
+    <div class="form-floating mb-3">
+      <span class="input-group-text">قیمت</span>
+      <input type="text" class="form-control" name="price" value="{{spent.price}}">
+    </div>
+
+{% if user.is_superuser %}
+    <button type="submit" class="btn btn-primary">
+      ذخیره
+    </button>
+{% endif %}
+
+    <br><br><br><br><br>
+
+  </form>
+
+{% endblock %}

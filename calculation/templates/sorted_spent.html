@@ -1,0 +1,35 @@
+{% extends "home.html" %}
+{% block content %}
+
+    <table class="table table-striped">
+        <thead>
+                <tr class="animate-text-right-5s">
+                  <th scope="col">قیمت</th>
+                  <th scope="col">پرداخت کننده</th>
+                  <th scope="col">تاریخ</th>
+                  <th scope="col">ساختمان</th>
+                  <th scope="col">عنوان</th>
+                  <th scope="col">دسته بندی</th>
+                  <th scope="col">ID</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for item in sorted_spent %}
+                <tr class="animate-text-left-3s">
+                    <td>ريال {{item.price}}</td>
+                    <td>{{item.payer}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.building}}</td>
+                    <td class="fw-bold">{{item.subject}}</td>
+                    <td>{{item.category}}</td>
+                    <td class="fw-bold">{{item.id}}</td>
+                </tr>
+            {% endfor %}
+                <tr class="animate-text-left-3s">
+                    <td> ريال {{ total_price }} </td>
+                    <td>:جمع پرداختی ها</td>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
